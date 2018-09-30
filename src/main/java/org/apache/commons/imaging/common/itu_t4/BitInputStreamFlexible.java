@@ -19,6 +19,8 @@ package org.apache.commons.imaging.common.itu_t4;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.checkerframework.common.value.qual.IntRange;
+
 /**
  * Input stream that allows reading up to 32 bits
  * across byte boundaries in most significant
@@ -38,7 +40,7 @@ class BitInputStreamFlexible extends InputStream {
     }
 
     @Override
-    public int read() throws IOException {
+    public @IntRange(from=-1, to=255) int read() throws IOException {
         if (cacheBitsRemaining > 0) {
             throw new IOException("BitInputStream: incomplete bit read");
         }

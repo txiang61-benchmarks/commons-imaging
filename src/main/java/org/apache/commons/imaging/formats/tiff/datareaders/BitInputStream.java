@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteOrder;
 
+import org.checkerframework.common.value.qual.IntRange;
+
 /**
  * Input stream reading 1-8, 16, 24 or 32 bits, starting from the most
  * significant bit, but incapable of reading non-aligned and
@@ -38,7 +40,7 @@ class BitInputStream extends InputStream {
     }
 
     @Override
-    public int read() throws IOException {
+    public @IntRange(from=-1, to=255) int read() throws IOException {
         if (cacheBitsRemaining > 0) {
             throw new IOException("BitInputStream: incomplete bit read");
         }

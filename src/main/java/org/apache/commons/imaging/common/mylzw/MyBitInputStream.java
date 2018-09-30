@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteOrder;
 
+import org.checkerframework.common.value.qual.IntRange;
+
 public class MyBitInputStream extends InputStream {
     private final InputStream is;
     private final ByteOrder byteOrder;
@@ -34,7 +36,7 @@ public class MyBitInputStream extends InputStream {
     }
 
     @Override
-    public int read() throws IOException {
+    public @IntRange(from=-1, to=255) int read() throws IOException {
         return readBits(8);
     }
 

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.imaging.common.BinaryFunctions;
+import org.checkerframework.common.value.qual.IntRange;
 
 public class ByteSourceInputStream extends ByteSource {
     private static final int BLOCK_SIZE = 1024;
@@ -93,7 +94,7 @@ public class ByteSourceInputStream extends ByteSource {
         private int blockIndex;
         
         @Override
-        public int read() throws IOException {
+        public @IntRange(from=-1, to=255) int read() throws IOException {
             if (null == block) {
                 if (readFirst) {
                     return -1;

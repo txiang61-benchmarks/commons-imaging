@@ -21,6 +21,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.checkerframework.common.value.qual.IntRange;
+
 class CachingInputStream extends InputStream {
     private final InputStream is;
     private final ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -34,7 +36,7 @@ class CachingInputStream extends InputStream {
     }
 
     @Override
-    public int read() throws IOException {
+    public @IntRange(from=-1, to=255) int read() throws IOException {
         final int result = is.read();
         baos.write(result);
         return result;

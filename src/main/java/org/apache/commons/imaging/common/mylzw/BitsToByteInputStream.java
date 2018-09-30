@@ -19,6 +19,8 @@ package org.apache.commons.imaging.common.mylzw;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.checkerframework.common.value.qual.IntRange;
+
 public class BitsToByteInputStream extends InputStream {
     private final MyBitInputStream is;
     private final int desiredDepth;
@@ -29,11 +31,11 @@ public class BitsToByteInputStream extends InputStream {
     }
 
     @Override
-    public int read() throws IOException {
+    public @IntRange(from=-1, to=255) int read() throws IOException {
         return readBits(8);
     }
 
-    public int readBits(final int bitCount) throws IOException {
+    public @IntRange(from=-1, to=255) int readBits(final int bitCount) throws IOException {
         int i = is.readBits(bitCount);
         if (bitCount < desiredDepth) {
             i <<= (desiredDepth - bitCount);
