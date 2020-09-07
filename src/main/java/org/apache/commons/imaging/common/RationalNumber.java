@@ -17,6 +17,7 @@
 package org.apache.commons.imaging.common;
 
 import java.text.NumberFormat;
+import org.checkerframework.common.value.qual.PolyValue;
 
 /**
  * Rational number, as used by the TIFF image format.
@@ -79,22 +80,22 @@ public class RationalNumber extends Number {
     }
 
     @Override
-    public double doubleValue() {
+    public @PolyValue double doubleValue() {
         return (double) numerator / (double) divisor;
     }
 
     @Override
-    public float floatValue() {
+    public @PolyValue float floatValue() {
         return (float) numerator / (float) divisor;
     }
 
     @Override
-    public int intValue() {
+    public @PolyValue int intValue() {
         return numerator / divisor;
     }
 
     @Override
-    public long longValue() {
+    public @PolyValue long longValue() {
         return (long) numerator / (long) divisor;
     }
 

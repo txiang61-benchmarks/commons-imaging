@@ -120,7 +120,7 @@ public class ByteSourceInputStream extends ByteSource {
         }
 
         @Override
-        public int read(final byte[] b, final int off, final int len) throws IOException {
+        public @IntRange(from=-1, to=2147483647) int read(final byte[] b, final int off, final int len) throws IOException {
             // first section copied verbatim from InputStream
             if (b == null) {
                 throw new NullPointerException();
